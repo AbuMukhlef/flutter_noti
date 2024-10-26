@@ -17,7 +17,8 @@ class Otp extends StatelessWidget {
             ),
             const SizedBox(height: 25),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+              },
               child: const Text('Submit'),
             ),
           ],
