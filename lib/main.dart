@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-import 'screen/home_screen.dart';
-import 'screen/rooooot.dart';
+import 'screen/login/login_screen.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-await dotenv.load(fileName: ".env");
-
+  await dotenv.load(fileName: ".env");
+  await Supabase.initialize(
+    url: dotenv.env['SUPABASE_URL']!,
+    anonKey: dotenv.env['SUPABASE_ANON_KEY']!,
+  );
   //Remove this method to stop OneSignal Debugging
   OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
 
@@ -24,20 +27,8 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final navKay = GlobalKey<NavigatorState>();
-
-    OneSignal.Notifications.addClickListener((event) {
-      event.notification.additionalData;
-      navKay.currentState?.pushNamed('/home');
-    });
-
     return MaterialApp(
-      navigatorKey: navKay,
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const RootScreen(),
-        '/home': (context) => const HomeScreen(),
-      },
+      home: LoginScreen(),
     );
   }
 }
