@@ -5,8 +5,10 @@ import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'screen/home_screen.dart';
 import 'screen/rooooot.dart';
 
-void main() {
+Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
+await dotenv.load(fileName: ".env");
+
   //Remove this method to stop OneSignal Debugging
   OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
 
