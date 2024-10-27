@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../../one_signal/services/notification_serv.dart';
 import '../../../supabase/core.dart';
 import '../../otp/otp.dart';
 
@@ -18,7 +19,7 @@ class LoginCubit extends Cubit<LoginState> {
   late String? userID;
 
   void login({required String email, required BuildContext context}) async {
-    print('login');
+    // print('login');
     emitLoading();
     if (await isAllowedEmail(email: email)) {
       await OneSignal.login(Random().nextInt(99999).toString());
@@ -32,6 +33,8 @@ class LoginCubit extends Cubit<LoginState> {
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (x) => Otp()));
     }
+    
+
     emitUpdated();
   }
 
