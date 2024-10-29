@@ -24,7 +24,7 @@ class LoginCubit extends Cubit<LoginState> {
     if (await isAllowedEmail(email: email)) {
       await OneSignal.login(Random().nextInt(99999).toString());
       userID = await OneSignal.User.getExternalId();
-      print('userID: $userID');
+      // print('userID: $userID');
       final sendUserID = await supabase
           .from('allowed_emails_test')
           .update({'user_id_t': userID}).eq('email', email);

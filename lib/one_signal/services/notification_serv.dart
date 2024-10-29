@@ -16,8 +16,8 @@ Future<void> sendNotification(String externalId) async {
   final body = jsonEncode({
     "app_id": appId,
     "include_external_user_ids": [externalId],
-    "headings": {"en": "Abu_Mukhlef_Notification"},
-    "contents": {"en": "SEO"} 
+    "headings": {"en": "Amer"},
+    "contents": {"en": "He doesn't believe in my abilities...😫"}, 
   });
 
   final response = await http.post(Uri.parse(url), headers: headers, body: body);
